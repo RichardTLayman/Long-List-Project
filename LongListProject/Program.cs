@@ -40,8 +40,18 @@ namespace LongListProject
                 }
                 else if (input == "2")
                 {
-                    //Create a way to load previous list
-                    return;
+                    Console.WriteLine("Please enter the name of the file you wish you load.");
+                    string LoadFileAs = Console.ReadLine();
+                    string text = System.IO.File.ReadAllText(@"C:\Users\WWStudent\Documents\Test Folder\" + $"{LoadFileAs}.txt");
+                    string[] stringArray = text.Split('\n');
+                    foreach (string element in stringArray)
+                    {
+                        Console.WriteLine(element);
+                        Forster.Add(element);
+                    }
+                    
+                    // Push data from string into new list to append/change
+               
                 }
                 else if (input == "3")
                 {
