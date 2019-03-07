@@ -11,15 +11,6 @@ namespace LongListProject
         static void Main(string[] args)
         {
 
-            //if ( List<string> Forster !=)
-            //{
-            // string text = System.IO.File.ReadAllText(@"C:\Users\WWStudent\Documents\Test Folder\ForsterList.txt");
-            //foreach (string item in text)
-            // {
-            // List<string> Forster = Forster.Add();
-            //}
-            // List<string> Forster = Forster.Add();
-            // }
             List<string> Forster = new List<string>();
             string input = " ";
 
@@ -50,9 +41,6 @@ namespace LongListProject
                         Console.WriteLine(element);
                         Forster.Add(element);
                     }
-                    
-                    // Push data from string into new list to append/change
-               
                 }
                 else if (input == "3")
                 {
@@ -70,8 +58,7 @@ namespace LongListProject
                 {
                     Console.WriteLine("Please name your file.");
                     string SaveFileAs = Console.ReadLine();
-                    System.IO.File.WriteAllLines(@"C:\Users\WWStudent\Documents\Test Folder\" + $"{SaveFileAs}.txt", Forster);
-                    // Need to find a way to add directory 
+                    System.IO.File.WriteAllLines(@"C:\Users\WWStudent\Documents\Test Folder\" + $"{SaveFileAs}.txt", Forster); 
                 }
                 else if (input == "Q")
                 {
@@ -81,8 +68,8 @@ namespace LongListProject
 
             // Should move current item to end
             // Insert a new item at position 2.
-            //Console.WriteLine("\nInsert(2, \"1834\")");
-            // parts.Insert(2, new Part() { PartName = "brake lever", PartId = 1834 });
+            //Console.WriteLine("\nInsert(2, \"1834\")"); tweak to add non completed item to end
+            // parts.Insert(2, new Part() { PartName = "brake lever", PartId = 1834 }); use to add marker of completed to end
         }
 
         // Create option to create file and one to load previous made file
@@ -93,11 +80,7 @@ namespace LongListProject
            return ListFile;
         }
 
-        //static List LoadFile()
-       // {
-
-           // return Listfile;
-       // }
+        
         // Create a directory to store files in
     }
 }
