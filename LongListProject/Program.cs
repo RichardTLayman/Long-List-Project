@@ -40,10 +40,11 @@ namespace LongListProject
                 }
                 else if (input == "2")
                 {
+                    Forster = CreateFile();
                     Console.WriteLine("Please enter the name of the file you wish you load.");
                     string LoadFileAs = Console.ReadLine();
-                    string text = System.IO.File.ReadAllText(@"C:\Users\WWStudent\Documents\Test Folder\" + $"{LoadFileAs}.txt");
-                    string[] stringArray = text.Split('\n');
+                    string[] stringArray = System.IO.File.ReadAllLines(@"C:\Users\WWStudent\Documents\Test Folder\" + $"{LoadFileAs}.txt");
+                    
                     foreach (string element in stringArray)
                     {
                         Console.WriteLine(element);
@@ -70,7 +71,7 @@ namespace LongListProject
                     Console.WriteLine("Please name your file.");
                     string SaveFileAs = Console.ReadLine();
                     System.IO.File.WriteAllLines(@"C:\Users\WWStudent\Documents\Test Folder\" + $"{SaveFileAs}.txt", Forster);
-                    // Need to find a way to add directory and save multiple files
+                    // Need to find a way to add directory 
                 }
                 else if (input == "Q")
                 {
