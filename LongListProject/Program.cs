@@ -35,20 +35,8 @@ namespace LongListProject
                 }
                 else if (input == "2")
                 {
-                    Forster = CreateFile();
-                    Console.WriteLine("Please enter the name of the file you wish you load.");
-                    string LoadFileAs = Console.ReadLine();
-                    string[] stringArray = System.IO.File.ReadAllLines(@"C:\Users\WWStudent\Documents\Test Folder\" + $"{LoadFileAs}.txt");
-
-                    foreach (string element in stringArray)
-                    {
-                        //deleted display of loaded items
-                        Forster.Add(element);
-                    }
-
-                    Console.WriteLine($"{LoadFileAs} has been loaded. Press any key to continue:");
+                    Forster = LoadFile();
                     Console.ReadKey();
-
                 }
                 else if (input == "3")
                 {
@@ -59,91 +47,7 @@ namespace LongListProject
                 }
                 else if (input == "4")
                 {
-                    //deleted base list display; added page list menu up to 100 items
-
-                    Console.WriteLine(); // adds a space
-                    Console.WriteLine($"You currently have {Forster.Count} tasks in your list.");
-                    Console.WriteLine();
-                    Console.WriteLine("  Page 1");
-                    Console.WriteLine("----------");
-                    
-
-                    for (int i = 0; ((i < Forster.Count) && (i < 25)); i++)
-                    {
-                        Console.WriteLine($" {i + 1}. {Forster[i]}");
-                    }
-
-                    if (Forster.Count > 25)
-                    {
-                        Console.WriteLine("Do you wish to view next page? Y/N");
-                        char charInput = Convert.ToChar(Console.ReadLine());
-
-                        if ((charInput == 'Y') || (charInput == 'y'))
-                        {
-                            Console.WriteLine("  Page 2");
-                            Console.WriteLine("----------");
-                            for (int i = 25; ((i < Forster.Count) && (i < 50)); i++)
-                            {
-                                Console.WriteLine($" {i + 1}. {Forster[i]}");
-                            }
-                            Console.ReadKey();
-                            
-                        }
-                        else if ((charInput == 'N') || (charInput == 'n'))
-                        {
-                            Console.WriteLine("Returning to menu. Press any key to continue:");
-                            Console.ReadKey();
-                        }
-                    }
-
-                    if (Forster.Count > 50)
-                    {
-                        Console.WriteLine("Do you wish to view next page? Y/N");
-                        char charInput = Convert.ToChar(Console.ReadLine());
-
-                        if ((charInput == 'Y') || (charInput == 'y'))
-                        {
-                            Console.WriteLine("  Page 3");
-                            Console.WriteLine("----------");
-
-                            for (int i = 50; ((i < Forster.Count) && (i < 75)); i++)
-                            {
-                                Console.WriteLine($" {i + 1}. {Forster[i]}");
-                            }
-                            Console.ReadKey();
-
-                        }
-                        else if ((charInput == 'N') || (charInput == 'n'))
-                        {
-                            Console.WriteLine("Returning to menu. Press any key to continue:");
-                            Console.ReadKey();
-                        }
-
-                    }
-                    if (Forster.Count > 75)
-                    {
-                        Console.WriteLine("Do you wish to view next page? Y/N");
-                        char charInput = Convert.ToChar(Console.ReadLine());
-
-                        if ((charInput == 'Y') || (charInput == 'y'))
-                        {
-                            Console.WriteLine("  Page 4");
-                            Console.WriteLine("----------");
-
-                            for (int i = 75; ((i < Forster.Count) && (i < 100)); i++)
-                            {
-                                Console.WriteLine($" {i + 1}. {Forster[i]}");
-                            }
-                            Console.ReadKey();
-                        }
-                        else if ((charInput == 'N') || (charInput == 'n'))
-                        {
-                            Console.WriteLine("Returning to menu. Press any key to continue:");
-                            Console.ReadKey();
-                        }
-
-                    }
-                    Console.ReadKey();
+                    DisplayTask(Forster);
                 }
                 else if (input == "5")
                 {
@@ -173,10 +77,111 @@ namespace LongListProject
            return ListFile;
         }
 
-        
+        static List<string> LoadFile()
+        {
+            List<string> Fresh = new List<string>();
+            Console.WriteLine("Please enter the name of the file you wish you load.");
+            string LoadFileAs = Console.ReadLine();
+            string[] stringArray = System.IO.File.ReadAllLines(@"C:\Users\WWStudent\Documents\Test Folder\" + $"{LoadFileAs}.txt");
+
+            foreach (string element in stringArray)
+            {
+                //deleted display of loaded items
+                Fresh.Add(element);
+            }
+            Console.WriteLine($"{LoadFileAs} has been loaded. Press any key to continue:");
+            return Fresh;
+        }
+
+        static void DisplayTask( List<string> Listed)
+        {
+            List<string> tasked = Listed; 
+            char charInput = ' ';
+            Console.WriteLine(); // adds a space
+            Console.WriteLine($"You currently have {tasked.Count} tasks in your list.");
+            Console.WriteLine();
+            Console.WriteLine("  Page 1");
+            Console.WriteLine("----------");
 
 
+            for (int i = 0; ((i < tasked.Count) && (i < 25)); i++)
+            {
+                Console.WriteLine($" {i + 1}. {tasked[i]}");
+            }
 
+            if (tasked.Count > 25)
+            {
+                Console.WriteLine("Do you wish to view next page? Y/N");
+                charInput = Convert.ToChar(Console.ReadLine());
+
+                if ((charInput == 'Y') || (charInput == 'y'))
+                {
+                    Console.WriteLine("  Page 2");
+                    Console.WriteLine("----------");
+                    for (int i = 25; ((i < tasked.Count) && (i < 50)); i++)
+                    {
+                        Console.WriteLine($" {i + 1}. {tasked[i]}");
+                    }
+                    Console.ReadKey();
+
+                }
+                else if ((charInput == 'N') || (charInput == 'n'))
+                {
+                    Console.WriteLine("Returning to menu. Press any key to continue:");
+
+                    Console.ReadKey();
+                }
+            }
+
+            if ((tasked.Count > 50) && (charInput == 'Y') || (charInput == 'y'))
+            {
+                Console.WriteLine("Do you wish to view next page? Y/N");
+                charInput = Convert.ToChar(Console.ReadLine());
+
+                if ((charInput == 'Y') || (charInput == 'y'))
+                {
+                    Console.WriteLine("  Page 3");
+                    Console.WriteLine("----------");
+
+                    for (int i = 50; ((i < tasked.Count) && (i < 75)); i++)
+                    {
+                        Console.WriteLine($" {i + 1}. {tasked[i]}");
+                    }
+                    Console.ReadKey();
+
+                }
+                else if ((charInput == 'N') || (charInput == 'n'))
+                {
+                    Console.WriteLine("Returning to menu. Press any key to continue:");
+                    Console.ReadKey();
+                }
+
+            }
+            if ((tasked.Count > 75) && (charInput == 'Y') || (charInput == 'y'))
+            {
+                Console.WriteLine("Do you wish to view next page? Y/N");
+                charInput = Convert.ToChar(Console.ReadLine());
+
+                if ((charInput == 'Y') || (charInput == 'y'))
+                {
+                    Console.WriteLine("  Page 4");
+                    Console.WriteLine("----------");
+
+                    for (int i = 75; ((i < tasked.Count) && (i < 100)); i++)
+                    {
+                        Console.WriteLine($" {i + 1}. {tasked[i]}");
+                    }
+                    Console.ReadKey();
+                }
+                else if ((charInput == 'N') || (charInput == 'n'))
+                {
+                    Console.WriteLine("Returning to menu. Press any key to continue:");
+                    Console.ReadKey();
+                }
+
+            }
+            Console.ReadKey();
+        }
 
         // Create a directory to store files in
     }
