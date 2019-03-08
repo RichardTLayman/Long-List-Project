@@ -66,6 +66,7 @@ namespace LongListProject
                     Console.WriteLine();
                     Console.WriteLine("  Page 1");
                     Console.WriteLine("----------");
+                    
 
                     for (int i = 0; ((i < Forster.Count) && (i < 25)); i++)
                     {
@@ -85,7 +86,7 @@ namespace LongListProject
                             {
                                 Console.WriteLine($" {i + 1}. {Forster[i]}");
                             }
-
+                            Console.ReadKey();
                             
                         }
                         else if ((charInput == 'N') || (charInput == 'n'))
@@ -109,8 +110,8 @@ namespace LongListProject
                             {
                                 Console.WriteLine($" {i + 1}. {Forster[i]}");
                             }
+                            Console.ReadKey();
 
-                            
                         }
                         else if ((charInput == 'N') || (charInput == 'n'))
                         {
@@ -133,7 +134,6 @@ namespace LongListProject
                             {
                                 Console.WriteLine($" {i + 1}. {Forster[i]}");
                             }
-
                             Console.ReadKey();
                         }
                         else if ((charInput == 'N') || (charInput == 'n'))
@@ -143,6 +143,7 @@ namespace LongListProject
                         }
 
                     }
+                    Console.ReadKey();
                 }
                 else if (input == "5")
                 {
