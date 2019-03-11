@@ -62,6 +62,10 @@ namespace LongListProject
                     Console.WriteLine("Your file has been saved. Please press any key to continue:");
                     Console.ReadKey();
                 }
+                else if (input == "7")
+                {
+                    DeleteCompleted(Forster);
+                }
                 else if ((input != "Q") || (input == "q"))
                 {
                     return;
@@ -222,6 +226,17 @@ namespace LongListProject
             for (int i = 0; i < Tasks.Count; i++)
                 if (Tasks[i].Contains(Completed))
             {
+                int count = 0;
+                foreach ( string element in Tasks)
+                {
+                        if (Tasks[i].Contains(Completed))
+                        {
+                            count++;
+                        }
+                }
+                    Console.WriteLine(count);
+                    Console.ReadKey();
+
 
                     Console.WriteLine($"Task: ({i+1}) is completed.");
                     Console.WriteLine("Press any key to continue:");
@@ -274,7 +289,27 @@ namespace LongListProject
                 }
             Console.ReadKey();
         }
-        
+
+        static void DeleteCompleted(List<string> Tasks)
+        {
+            string Completed = " -completed-";
+            
+
+            for (int i = 0; i < Tasks.Count; i++)
+                if (Tasks[i].Contains(Completed))
+                {
+                    int count = 0;
+                    foreach (string element in Tasks)
+                    {
+                        if (Tasks[i].Contains(Completed))
+                        {
+                            count++;
+                        }
+                    }
+                    Console.WriteLine(count);
+                    Console.ReadKey();
+                }
+        }
         // Create a directory to store files in
     }
 }
