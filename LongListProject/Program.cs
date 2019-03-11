@@ -23,7 +23,8 @@ namespace LongListProject
                 Console.WriteLine(" Load File: Press 2");
                 Console.WriteLine(" Add new task to Tasklist: Press 3");
                 Console.WriteLine(" Display Tasklist Page 1: Press 4"); //altered text data
-                Console.WriteLine(" Save Current List: Press 5");
+                Console.WriteLine(" Select Tasks: Press 5");
+                Console.WriteLine(" Save Current List: Press 6");
                 Console.WriteLine(" Quit Program: Press Q");
                 input = Console.ReadLine();
 
@@ -49,7 +50,11 @@ namespace LongListProject
                 {
                     DisplayTask(Forster);
                 }
-                else if (input == "5")
+                else if ( input == "5")
+                {
+                    EngageTasks(Forster);
+                }
+                else if (input == "6")
                 {
                     Console.WriteLine("Please name your file.");
                     string SaveFileAs = Console.ReadLine();
@@ -97,6 +102,9 @@ namespace LongListProject
         {
             List<string> tasked = Listed; 
             char charInput = ' ';
+            string Completed = " -completed-";
+            string Actioned = " -actioned-";
+
             Console.WriteLine(); // adds a space
             Console.WriteLine($"You currently have {tasked.Count} tasks in your list.");
             Console.WriteLine();
@@ -104,9 +112,30 @@ namespace LongListProject
             Console.WriteLine("----------");
 
 
+           /* for (int i = 0; i < tasked.Count; i++)
+            {
+                if()
+                {
+                    tasked.Remove(Completed);
+                }
+            }*/
+
             for (int i = 0; ((i < tasked.Count) && (i < 25)); i++)
             {
+                if (tasked[i].Contains(Actioned))
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    
+                }
+
+                    if (tasked[i].Contains(Completed))
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    
+                }
+
                 Console.WriteLine($" {i + 1}. {tasked[i]}");
+                Console.ResetColor();
             }
 
             if (tasked.Count > 25)
@@ -183,6 +212,69 @@ namespace LongListProject
             Console.ReadKey();
         }
 
+        static void EngageTasks(List<string> Tasks)
+        {
+            // if 25 complete tasks exist on one page, dlete all 25
+
+            string Completed = " -completed-";
+            string Actioned = " -actioned-";
+
+            for (int i = 0; i < Tasks.Count; i++)
+                if (Tasks[i].Contains(Completed))
+            {
+
+                    Console.WriteLine($"Task: ({i+1}) is completed.");
+                    Console.WriteLine("Press any key to continue:");
+                    Console.ReadKey();//placeholder
+            }
+            else if (Tasks[i].Contains(Actioned))
+            {
+                Console.WriteLine(Tasks[i]);
+                Console.WriteLine();
+                Console.WriteLine("Have you completed this task? Y/N");
+                char YN  = Convert.ToChar(Console.ReadLine());
+
+                    if ((YN == 'Y') || (YN == 'y'))
+                    {
+                        Tasks[i] += Completed;
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
+                        Console.WriteLine(Tasks[i]);
+                        Console.WriteLine("Task has been completed.");
+                        Console.ResetColor();
+                    }
+                    else if ((YN == 'N') || (YN == 'n'))
+                    {
+                        string copy = Tasks[i];
+                        Tasks.Remove(copy);
+                        Tasks.Add(copy);
+                       
+                        Console.WriteLine("This task has been reapplied to the bottom of the task list.");
+                        
+                    }
+            }
+            else
+            {
+                    Console.WriteLine(Tasks[i]);
+                    Console.WriteLine();
+                    Console.WriteLine("Do you wish to action this task? Y/N");
+                    char YN = Convert.ToChar(Console.ReadLine());
+
+                    if ((YN == 'Y') || (YN == 'y'))
+                    {
+                        Tasks[i] += Actioned;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine(Tasks[i]);
+                        Console.WriteLine("Task has been actioned.");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+
+                    }
+                }
+            Console.ReadKey();
+        }
+        
         // Create a directory to store files in
     }
 }
